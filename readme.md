@@ -1,23 +1,6 @@
 # AWS Notes
 
-## Introduction
-
-- https://youtu.be/Z3SYDTMP3ME
-
-## March 6th
-
-- [Created AWS account](https://youtu.be/KkWQuSwuGFc)
-- [Set a billing alarm of $10](https://youtu.be/2XilJFirnWY)
-
-## March 7th
-
-[AWS Basics for Beginners - Full Course](https://youtu.be/ulprqHHWlng)
-
-- [AWS calculator](https://calculator.aws/)
-
-## March 8th
-
-### Security Groups & Network ACLs
+## Security Groups & Network ACLs
 
 - Security Groups only apply at the instance level but can been applied to VMs in any subnet - traffic going into and out of the NIC
   - Apply at the VPC level
@@ -37,17 +20,15 @@
 
 Stateful firewall allows return traffic by default - it doesn't need an allow rule; a stateless firewall needs an Allow rule
 
-- SG - stateful
+- Security Group - stateful
 - Network ACL - stateless
 
 ## Public & Private Services
 
-Private services are created in a VPC
-Private IPs by default but can be made public; must be accessed over the internet
+- Private services are created in a VPC
+- Private IPs by default but can be made public; must be accessed over the internet
 
 ## AWS CLI
-
-- [Downloading the CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-windows.html)
 
 ## Elastic Compute Cloud (EC2)
 
@@ -64,7 +45,7 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 ### AMI - Amazon Machine Image
 
 - Instance type - indicates the power of the machine - t2.micro
-- EBS - elastic block store
+- EBS - elastic block store - where the hard drive(s) are stored
 
 ## Access Keys
 
@@ -84,9 +65,41 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 
 - Linux only
 
-### EBS
+### EBS - Elastic Block Store
 
 - Mount volumes - look like local drives
 - Attached over the network
   - instance stores are physically attached to the host - high performance with low latency; ephereral - lost on instance shutdown - good for temp data; otherwise, copy it off
 
+## RDS - Relational Database Service
+
+- Runs on EC2 instances
+  - Can choose/change the instance type
+    - Vertical - with downtime
+    - Scale out
+      - multi-AZ
+      - DR
+      - primary is RDS master, passive standby in another AZ
+        - Connection strings remapped automatically
+    - Read replica
+      - async replication
+      - read-only
+      - only queries are scaled, i.e. reads
+      - You can't encrypt a r/o DB if the master is unencrypted
+  - Managed service so no root access
+- Types
+  - Amazon Aurora
+  - MySQL
+  - MariaDB
+  - Oracle
+  - M/Soft SQL Server
+  - PostgreSQL
+
+## References
+
+- [Introduction to AWS Services](https://youtu.be/Z3SYDTMP3ME)
+- [Create AWS account](https://youtu.be/KkWQuSwuGFc)
+- [Set a billing alarm](https://youtu.be/2XilJFirnWY)
+- [AWS Basics for Beginners - Full Course](https://youtu.be/ulprqHHWlng)
+- [AWS calculator](https://calculator.aws/)
+- [Downloading the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-windows.html)
