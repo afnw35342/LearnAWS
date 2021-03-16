@@ -95,6 +95,26 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
   - M/Soft SQL Server
   - PostgreSQL
 
+## DynamoDB
+
+- Key/value table
+- Horiz., seamless scaling across partitions
+- Replicated across multiple AZs
+
+- Tables
+  - Items = rows, attributes = columns
+
+## CloudFormation
+
+- Templates - IaC
+- Visualiser
+
+## Elastic Bean Stalk
+
+## AWS Amplify
+
+## Kinesis
+
 ## References
 
 - [Introduction to AWS Services](https://youtu.be/Z3SYDTMP3ME)
