@@ -109,7 +109,19 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 - Templates - IaC
 - Visualiser
 
-## Elastic Bean Stalk
+## Elastic Beanstalk
+
+## Code Pipeline
+
+### CodeCommit
+
+- Code repo
+
+### CodeBuild
+
+### CodeDeploy
+
+
 
 ## AWS Amplify
 
@@ -123,3 +135,4 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 - [AWS Basics for Beginners - Full Course](https://youtu.be/ulprqHHWlng)
 - [AWS calculator](https://calculator.aws/)
 - [Downloading the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-windows.html)
+- [AWS Docs](https://docs.aws.amazon.com/)
