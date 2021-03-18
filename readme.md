@@ -121,8 +121,6 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 
 ### CodeDeploy
 
-
-
 ## AWS Amplify
 
 ## Kinesis
