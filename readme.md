@@ -121,9 +121,31 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 
 ### CodeDeploy
 
+### CodeStar
+
 ## AWS Amplify
 
 ## Kinesis
+
+## Route 53
+
+- Domain registration
+- DNS
+- Routing policies
+  - Simple
+  - Failover
+  - Geolocation
+  - GeoProximity
+  - Latency
+- Health checks on EC2 instances
+
+## CloudFront
+
+- CDN
+- Sourced from S3 or EC2
+  - Origin
+- Edge location cache static content
+- Users directed to the nearest edge location
 
 ## References
 
