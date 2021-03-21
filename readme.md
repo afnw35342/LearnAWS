@@ -147,6 +147,30 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 - Edge location cache static content
 - Users directed to the nearest edge location
 
+## Elastic Container Service (ECS)
+
+- ECS Task is a running Docker container
+  - Created from a Task definition
+- ECS cluster is a logical grouping of tasks or ECS services
+- Fargate is the managed, serverless platform
+  - Alternatively, you can stand up EC2 instances, install some software, and run it from there
+
+## AWS Lamda
+
+- Runs for up to 15 mins
+- Paid for by time & memory consumed
+
+## Simple Notification Service
+
+- Broadcasting
+
+## Simple Queue Service
+
+- Command messages
+- Event source mapping
+  - Mapping a Q service to a Lambda function
+
+
 ## References
 
 - [Introduction to AWS Services](https://youtu.be/Z3SYDTMP3ME)
