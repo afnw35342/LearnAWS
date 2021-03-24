@@ -1,5 +1,42 @@
 # AWS Notes
 
+## Virtual Private Cloud (VPC)
+
+- Multiple AZs per region
+- Subnet in 1 AZ only
+- Internet Gateway on VPC required for internet connectivity
+  - Create a route table on the subnet, pointing at the IGW
+- Private subnets don't have an IGW entry in the RT
+  - Recommended to create RTs at the subnet level
+  - By default, they will inherit the VPC RT
+- Outbound internet traffic via a NAT located in a public subnet
+
+### VPC-to-VPC Connectivity via VPC Peering
+
+- Irrelevant of AWS account or region
+- Non-transitive routing
+  - Must be a direct connection
+  - Cannot go indirect without a Transit Gateway
+    - Acts as a hub
+    - Connecting multiple VPCs
+
+### VPC Endpoint (Gateway)
+
+- Allows for S3 & DynamoDB traffic that would've been routed over the internet to connect directly
+- Must be in the same region
+  - Specified by route table entries
+
+### VPC Endpoint (Interface)
+
+- Allows for SNS, SES, CloudWatch, SQS, etc. traffic that would've been routed over the internet to connect directly
+- Differs from VPC Endpoint by creating an Elastic Network Interface (ENI) in the subnet
+  - Traffic routed through ENI
+
+### Private Link
+
+- SaaS provider exposes a single service in their VPC
+  - Typically only the NLB exposed
+
 ## Security Groups & Network ACLs
 
 - Security Groups only apply at the instance level but can been applied to VMs in any subnet - traffic going into and out of the NIC
@@ -60,6 +97,11 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 
 - [Bucket naming rules](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html)
 - Accessed over the internet
+  - Unless using a VPC Endpoint (Gateway)
+
+#### Object Lambda
+
+- Tranforms data on access
 
 ### EFS
 
@@ -170,6 +212,22 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 - Event source mapping
   - Mapping a Q service to a Lambda function
 
+## Site-to-site VPN
+
+- Connection between Virtual Private Gateway on the VPC & Customer Gateway on the on-premise DC
+  - IPSEC protocol
+  - 2 connections created by default for high availability
+  - Traffic still flows over the internet
+
+## Direct Connect
+
+- Always-on private connections
+  - High speed, low latency
+  - Connection still into a Virtual Private Gateway
+
+###
+
+- Client VPN endpoint for point-to-site VPN
 
 ## References
 
@@ -180,3 +238,7 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 - [AWS calculator](https://calculator.aws/)
 - [Downloading the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-windows.html)
 - [AWS Docs](https://docs.aws.amazon.com/)
+- [Setup a Site-to-site VPN](https://youtu.be/kqrWjR2Nn7Q)
+  - [Step-by-step instructions](https://awstrainingcenter-test.s3-us-west-2.amazonaws.com/10+-+Setup+Site+to+Site+VPN+Connection+in+AWS.pdf)
+- [Introduction to AWS Networking](https://youtu.be/XZbvQWkpJTI)
+- ...
