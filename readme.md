@@ -225,8 +225,6 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
   - High speed, low latency
   - Connection still into a Virtual Private Gateway
 
-###
-
 - Client VPN endpoint for point-to-site VPN
 
 ## References
@@ -241,4 +239,5 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 - [Setup a Site-to-site VPN](https://youtu.be/kqrWjR2Nn7Q)
   - [Step-by-step instructions](https://awstrainingcenter-test.s3-us-west-2.amazonaws.com/10+-+Setup+Site+to+Site+VPN+Connection+in+AWS.pdf)
 - [Introduction to AWS Networking](https://youtu.be/XZbvQWkpJTI)
+- [AWS Certified Cloud Practitioner Training 2020 - Full Course](https://youtu.be/3hLmDS179YE)
 - ...
