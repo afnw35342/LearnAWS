@@ -70,6 +70,7 @@ Stateful firewall allows return traffic by default - it doesn't need an allow ru
 ## Elastic Compute Cloud (EC2)
 
 - Virtual server
+- Limits dashboard???
 
 ### 3 types of IP address
 
@@ -106,6 +107,7 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 ### EFS
 
 - Linux only
+- One Zone - aging data management
 
 ### EBS - Elastic Block Store
 
@@ -129,6 +131,7 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
       - only queries are scaled, i.e. reads
       - You can't encrypt a r/o DB if the master is unencrypted
   - Managed service so no root access
+  - snapshots restore to a new instace, not to the original source
 - Types
   - Amazon Aurora
   - MySQL
@@ -150,6 +153,8 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 
 - Templates - IaC
 - Visualiser
+- Recommendation is to always modify through a new CloudFormation deployment
+- Update the schema file to update the deployment back to a consistent state, then update it again to resolve the resource issue
 
 ## Elastic Beanstalk
 
@@ -168,6 +173,8 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 ## AWS Amplify
 
 ## Kinesis
+
+## Ground Truth?
 
 ## Route 53
 
@@ -226,6 +233,37 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
   - Connection still into a Virtual Private Gateway
 
 - Client VPN endpoint for point-to-site VPN
+
+## DeepComposer
+
+- ML learning based
+- physical keyboard
+- music composing
+- Custom models from sage maker
+
+## Cloud Shell
+
+- Linux shell
+
+## Lookout for Metrics
+
+- ML looking for anomolies in data
+
+## Amazon Certificate Manager
+
+- Manages renewal notifications
+
+## Redshift
+
+- Sharing data between instances
+- No data movement
+- Define shared objects, and consumers
+- Define consumers access to newly shared objects
+
+## IAM Access Analyser
+
+- Policy validation
+- Warnings about over-permissive access policies
 
 ## References
 
