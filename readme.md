@@ -99,10 +99,12 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 - [Bucket naming rules](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html)
 - Accessed over the internet
   - Unless using a VPC Endpoint (Gateway)
-
+- S3 object lambda modifies the object on GET
+  
 #### Object Lambda
 
-- Tranforms data on access
+- Tranforms object data on GET access
+  - E.g. Change data format, change video encoding
 
 ### EFS
 
@@ -173,6 +175,8 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 ## AWS Amplify
 
 ## Kinesis
+
+- Streaming
 
 ## Ground Truth?
 
@@ -264,6 +268,24 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 
 - Policy validation
 - Warnings about over-permissive access policies
+
+## Comprehend
+
+- Understanding text through ML analysis
+- Can ID PII
+
+## Snowball
+
+- Data movement but not over the network
+- Loading data in bulk
+- Snowmobile - larger version
+- E-ink label
+- Tamperproof
+- 3 Levels of cryptography
+- on-board compute
+- Ruggedised
+
+## Amazon Managed Service for Grafana (AMG)
 
 ## References
 
