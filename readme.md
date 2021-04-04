@@ -573,7 +573,7 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 ## Artifact
 
 - Compliance report based on selected regulatory framework
-- Generates a PDF that contains an Excel spreadie with more info 
+- Generates a PDF that contains an Excel spreadie with more info
 
 ## References
 
