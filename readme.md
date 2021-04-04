@@ -89,6 +89,12 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 
 #### Access Keys
 
+#### Inspector
+
+- Agent to assess selected EC2 instance against a Security Benchmark
+  - Variety of benchmarks to compare against
+- Outputs a PDF
+
 ### Elastic Beanstalk
 
 - Services for deploying & scaling web apps
@@ -136,7 +142,7 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 - Accessed over the internet
   - Unless using a VPC Endpoint (Gateway)
 - S3 object lambda modifies the object on GET
-  
+
 #### Object Lambda
 
 - Tranforms object data on GET access
@@ -301,6 +307,11 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 - Edge location cache static content
 - Users directed to the nearest edge location
 
+### Web Application Firewall (WAF)
+
+- Attached to CloudFront or Application Load Balancer
+- Rulesets available from the Marketplace
+
 ## Simple Notification Service
 
 - Broadcasting
@@ -325,10 +336,15 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 - Always-on private connections
   - High speed, low latency - gigabit
   - Connection still into a Virtual Private Gateway
+- Fiber optics
 
-### ???
+#### VPN Connect
 
-- Client VPN endpoint for point-to-site VPN
+- Belt-n-braces security for Direct Connect
+
+### Client VPN
+
+- Endpoint for point-to-site VPN
 
 ## DeepComposer
 
@@ -366,6 +382,7 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 - Assess the deployed resources and provides guidance
   - Unused IP addresses
   - Idle load balancers
+  - Holistic view across multiple services
 
 ## TCO Calculator
 
@@ -408,6 +425,8 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 
 ## Amazon Connect
 
+- Call centre service
+  - Automated phone system
 - Inbound & outbound calls
 - Workflow
 - Recording into [S3](#s3) for analysis via Comprehend
@@ -437,11 +456,27 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 
 ## Simple E-mail Service (SES)
 
+- Cloud-based e-mail service
 - Supports HTML, unlike SNS
+- Can receive incoming e-mails
+- E-mail templates
+- Custom domain name
+- Monitor your e-mail reputation
 
 ## Simple Notification Service (SNS)
 
 - Text only
+- Outbound notifications only
+- Pub/Sub
+  - Topics are subscribed to
+- Supports multiple protocols
+  - HTTP, E-mail, SQS, SMS
+
+## Simple Queue Service (SQS)
+
+- 14 day retention
+- Sequential or parallel
+- Guaranteed at least 1-time delivery
 
 ## QuickSight
 
@@ -455,6 +490,90 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 
 - AWS directory Service for M/soft Active Directory
 - Enables directory-aware apps to use manaded A/D on AWS
+
+## Logging
+
+### CloudTrail
+
+- Logs all API calls
+- Who is to blame?
+- Developer mis-config
+- Malicious actors
+- Automate responses
+  - Tagging
+
+### CloudWatch
+
+- Collection of services
+  - Primarily, logs
+    - Perf. data about AWS services, e.g. CPU utilisation, memory usage, etc.
+    - Application logs
+    - Lambda
+  - Everything else is derived from Logs
+  - Metrics - time-series data points usually graphed on a dashboard
+  - Events - do something in response to something
+  - Alarms - notifications based on a threshold breach
+  - Dashboard - visualisation of metrics
+
+## AWS Shield
+
+- DDoS protection
+- Sits behind Route 53 and/or CloudFront
+- Turned on by default when traffic is routed whrough 1 of these services
+- Protection at Layers 3 (network), 4 (transport), & 7 (application)
+- Free tier
+- Paid tier - $3k/year
+  - Larger, more sophisticated attacks
+
+## Guard Duty
+
+- Threat Detection Service
+  - Intrusion Detection System (IDS) / Intrusion Protection System (IPS)
+- Monitors for malicious activity or policy violations
+  - Uses ML to analyse logs from...
+    - CloudTrail
+    - VPC Flow
+    - DNS
+  - Responses can be automated via CloudWatch events
+
+## Key Management Service (KMS)
+
+- Multi-tenant HSM
+  - Hardware security module
+- Simple checkbox on many services
+- Envelope encryption
+  - Key encrypted, placed in a digital envelope; envelope encrypted with a master key
+
+## Macie
+
+- Uses ML to continuously analyse S3 data access activity for anomolies
+  - CloudTrail logs
+  - Generates alerts
+    - Large variety of alerts
+
+## CloudSearch
+
+- Search engine that adds a search bar
+
+## Media Connect
+
+- New version of Elastic Transcoder
+- Video transcoder
+  - Watermark
+  - Different video formats
+  - Automated editing - intro & outro added automatically
+
+### Benefits of using Elemental MediaConvert
+
+- Overlays images
+- Insert video clips
+- Extract captions data
+- Robust UI
+
+## Artifact
+
+- Compliance report based on selected regulatory framework
+- Generates a PDF that contains an Excel spreadie with more info 
 
 ## References
 
