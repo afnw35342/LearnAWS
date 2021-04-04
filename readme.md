@@ -37,7 +37,7 @@
 - SaaS provider exposes a single service in their VPC
   - Typically only the NLB exposed
 
-## Security Groups & Network ACLs
+### Security Groups & Network ACLs
 
 - Security Groups only apply at the instance level but can been applied to VMs in any subnet - traffic going into and out of the NIC
   - Apply at the VPC level
@@ -67,12 +67,14 @@ Stateful firewall allows return traffic by default - it doesn't need an allow ru
 
 ## AWS CLI
 
-## Elastic Compute Cloud (EC2)
+## Computing
+
+### Elastic Compute Cloud (EC2)
 
 - Virtual server
 - Limits dashboard???
 
-### 3 types of IP address
+#### 3 types of IP address
 
 - Public IP - lost when the instance is stopped; used in public subnets; not charged; associated with the private IP; cannot be moved between instances
 - Private IP - retained when the instance is stopped; used in public and private subnets
@@ -80,14 +82,48 @@ Stateful firewall allows return traffic by default - it doesn't need an allow ru
 
 So, if you have an instance with only a private IP, i.e. it's in a private subnet, external access must be via a NAT gateway in a public subnet, using route tables - private subnet route table points at NAT, NAT points at Internet Gateway
 
-### AMI - Amazon Machine Image
+#### AMI - Amazon Machine Image
 
 - Instance type - indicates the power of the machine - t2.micro
 - EBS - elastic block store - where the hard drive(s) are stored
 
-## Access Keys
+#### Access Keys
 
-## Elastic Load Balancing
+### Elastic Beanstalk
+
+- Services for deploying & scaling web apps
+  - EC2, S3, SNS, CloudWatch, autoscaling, ELBs
+- Upload packaged code
+- Intended for developer environments
+
+### Elastic Container Service (ECS)
+
+- ECS Task is a running Docker container
+  - Created from a Task definition
+- ECS cluster is a logical grouping of tasks or ECS services
+- Platform is EC2
+
+### Fargate
+
+- Managed, serverless platform
+  - Alternatively, you can stand up EC2 instances, install some software, and run it from there
+- Similar to Lambda - pay for CPU time
+
+### AWS Lamda
+
+- Serverless functions
+- Runs for up to 15 mins
+- Paid for by time & memory consumed
+
+### EKS
+
+- Managed K8s as a service
+
+### AWS Batch
+
+- Scheduling EC2 spot instances
+
+## Elastic Load Balancing (ELB)
 
 - Health probes
 - Trigger to Auto Scaling to replace a bad instance
@@ -106,16 +142,57 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 - Tranforms object data on GET access
   - E.g. Change data format, change video encoding
 
+#### Glacier
+
+- Intended for archiving & long-term backup
+- Low cost...
+  - ...but the trade-off is...
+- Slow retrieval time
+  - Measured in minute and probably hours
+  - Also, significant retrieval cost
+- Use case is data retention for regulatory purposes
+  - Unlikely to need to retrieve it but just in case...
+
+### Storage Gateway
+
+- Extension of on-prem storage into the cloud
+- Backup & archiving, DR, data processing in the cloud, stroage tiering, data migration
+
 ### EFS
 
 - Linux only
 - One Zone - aging data management
+- Shared file store, mountable concurrently on multiple EC2 instances
 
 ### EBS - Elastic Block Store
 
+- Virtual hard-drive in the cloud
+  - SSD
+  - IOPS SSD
+  - Throughput HDD
+  - Cold HHD
 - Mount volumes - look like local drives
 - Attached over the network
   - instance stores are physically attached to the host - high performance with low latency; ephereral - lost on instance shutdown - good for temp data; otherwise, copy it off
+
+### Snowball
+
+- Data movement but not over the network
+- Loading data in bulk - 50-80TB
+- E-ink label
+- Tamperproof
+- 3 Levels of cryptography
+- on-board compute
+- Ruggedised
+
+#### Edge
+
+- Better version of Snowball
+
+### Snowmobile
+
+- larger version of Snowball
+- Shipping container
 
 ## RDS - Relational Database Service
 
@@ -136,29 +213,53 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
   - snapshots restore to a new instace, not to the original source
 - Types
   - Amazon Aurora
+    - Serverless option
+    - Fully managed
   - MySQL
   - MariaDB
   - Oracle
   - M/Soft SQL Server
   - PostgreSQL
 
-## DynamoDB
+### DynamoDB
 
 - Key/value table
 - Horiz., seamless scaling across partitions
 - Replicated across multiple AZs
+- Has its roots in Cassadra
 
 - Tables
   - Items = rows, attributes = columns
 
+### DocumentDB
+
+- MongoDB-compatible
+
+### Neptune
+
+- Managed graph DB
+
+### Redshift
+
+- Columnar DB
+- Sharing data between instances
+- No data movement
+- Define shared objects, and consumers
+- Define consumers access to newly shared objects
+
+### ElastiCache
+
+- Redis
+- MemCacheD
+
 ## CloudFormation
 
 - Templates - IaC
+  - JSON or YAML
 - Visualiser
 - Recommendation is to always modify through a new CloudFormation deployment
 - Update the schema file to update the deployment back to a consistent state, then update it again to resolve the resource issue
-
-## Elastic Beanstalk
+- Complex option but very powerful
 
 ## Code Pipeline
 
@@ -200,19 +301,6 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 - Edge location cache static content
 - Users directed to the nearest edge location
 
-## Elastic Container Service (ECS)
-
-- ECS Task is a running Docker container
-  - Created from a Task definition
-- ECS cluster is a logical grouping of tasks or ECS services
-- Fargate is the managed, serverless platform
-  - Alternatively, you can stand up EC2 instances, install some software, and run it from there
-
-## AWS Lamda
-
-- Runs for up to 15 mins
-- Paid for by time & memory consumed
-
 ## Simple Notification Service
 
 - Broadcasting
@@ -223,18 +311,22 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 - Event source mapping
   - Mapping a Q service to a Lambda function
 
-## Site-to-site VPN
+## Networking
+
+### Site-to-site VPN
 
 - Connection between Virtual Private Gateway on the VPC & Customer Gateway on the on-premise DC
   - IPSEC protocol
   - 2 connections created by default for high availability
   - Traffic still flows over the internet
 
-## Direct Connect
+### Direct Connect
 
 - Always-on private connections
-  - High speed, low latency
+  - High speed, low latency - gigabit
   - Connection still into a Virtual Private Gateway
+
+### ???
 
 - Client VPN endpoint for point-to-site VPN
 
@@ -257,13 +349,6 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 
 - Manages renewal notifications
 
-## Redshift
-
-- Sharing data between instances
-- No data movement
-- Define shared objects, and consumers
-- Define consumers access to newly shared objects
-
 ## IAM Access Analyser
 
 - Policy validation
@@ -274,18 +359,102 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 - Understanding text through ML analysis
 - Can ID PII
 
-## Snowball
-
-- Data movement but not over the network
-- Loading data in bulk
-- Snowmobile - larger version
-- E-ink label
-- Tamperproof
-- 3 Levels of cryptography
-- on-board compute
-- Ruggedised
-
 ## Amazon Managed Service for Grafana (AMG)
+
+## Trusted Advisor
+
+- Assess the deployed resources and provides guidance
+  - Unused IP addresses
+  - Idle load balancers
+
+## TCO Calculator
+
+- ...
+
+## Landing Zones
+
+- Enterprises setup for multi-account landscape
+- Account Vending Machine (AVM)
+  - Service catalog templates
+- SSO
+- Customisable via LZ configs
+- 4-account baseline - recommended baseline to have purposeful, isolated accounts
+  - Master
+  - Shared Services
+  - Log Archive
+  - Security account
+- Add additional accounts via the AVM
+
+## Resource Groups & Tagging
+
+- Tags - metadata for organising your AWS resources
+- Resource Groups - resources that share 1 or more tags
+  - RGs can be tag-based or CloudFormation-based
+
+## AWS QuickStarts
+
+- Pre-built templates
+- Filterable & searchable
+- CloudFormation template
+
+## OpsWorks
+
+- Config management service
+- Managed instances of Chef and/or Puppet (receipies in Ruby)
+
+## Marketplace
+
+- Software listings from '000s of ISVs
+
+## Amazon Connect
+
+- Inbound & outbound calls
+- Workflow
+- Recording into [S3](#s3) for analysis via Comprehend
+
+## WorkSpaces
+
+- VDI
+
+## WorkDocs
+
+- AWS' version of SharePoint
+
+## Chime
+
+- Online meetings, video conferencing
+- Scales to meet demand
+
+## WorkMail
+
+- Managed business e-mail
+- GMail on AWS
+
+## PinPoint
+
+- Marketing segmentation
+- E-mail, SMS, Push notifications
+
+## Simple E-mail Service (SES)
+
+- Supports HTML, unlike SNS
+
+## Simple Notification Service (SNS)
+
+- Text only
+
+## QuickSight
+
+- BI data visualiser
+- Connects multiple data sources
+- No/low code
+- ML component
+- Shared via dashboards
+
+## AWS Managed Microsoft AD
+
+- AWS directory Service for M/soft Active Directory
+- Enables directory-aware apps to use manaded A/D on AWS
 
 ## References
 
