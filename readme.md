@@ -515,6 +515,10 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
   - Alarms - notifications based on a threshold breach
   - Dashboard - visualisation of metrics
 
+#### Logs
+
+- Agent installed on EC2
+
 ## AWS Shield
 
 - DDoS protection
