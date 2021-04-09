@@ -592,4 +592,6 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
   - [Step-by-step instructions](https://awstrainingcenter-test.s3-us-west-2.amazonaws.com/10+-+Setup+Site+to+Site+VPN+Connection+in+AWS.pdf)
 - [Introduction to AWS Networking](https://youtu.be/XZbvQWkpJTI)
 - [AWS Certified Cloud Practitioner Training 2020 - Full Course](https://youtu.be/3hLmDS179YE)
+- [AWS VPC Basics - Understanding what is VPC and Calculating CIDR for VPC and Subnets](https://youtu.be/O3fgul-fJCk)
+- [AWS VPC Public and Private Subnets](https://youtu.be/4T9G9nv0GIk)
 - ...
