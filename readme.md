@@ -9,7 +9,9 @@
 - Private subnets don't have an IGW entry in the RT
   - Recommended to create RTs at the subnet level
   - By default, they will inherit the VPC RT
-- Outbound internet traffic via a NAT located in a public subnet
+- Outbound internet traffic via a NAT gateway located in a public subnet
+  - NAT Gateway will block traffic initialised on the internet
+    - It does allow responses through to requests initialised from inside the VPC
 
 ### VPC-to-VPC Connectivity via VPC Peering
 
@@ -19,14 +21,24 @@
   - Cannot go indirect without a Transit Gateway
     - Acts as a hub
     - Connecting multiple VPCs
+- Very difficule to manage at scale
+  - Connecting very VPC to every other VPC gets heavy quickly
+  - Solution is Transit Gateway
 
-### VPC Endpoint (Gateway)
+#### Transit Gateways
+
+- VPC peering at scale
+  - Connect multiple VPCs to multiple other VPCs
+- Region specific
+  - Although region agnostic is due
+
+### Gateway VPC Endpoint
 
 - Allows for S3 & DynamoDB traffic that would've been routed over the internet to connect directly
 - Must be in the same region
   - Specified by route table entries
 
-### VPC Endpoint (Interface)
+### Interface VPC Endpoint
 
 - Allows for SNS, SES, CloudWatch, SQS, etc. traffic that would've been routed over the internet to connect directly
 - Differs from VPC Endpoint by creating an Elastic Network Interface (ENI) in the subnet
@@ -57,8 +69,26 @@
 
 Stateful firewall allows return traffic by default - it doesn't need an allow rule; a stateless firewall needs an Allow rule
 
-- Security Group - stateful
-- Network ACL - stateless
+#### Security Group
+
+- Stateful
+- Distributed firewall
+
+#### Network ACL
+
+- Stateless
+- Should be course-grained
+- Entries required for both directions
+
+### Flow Logs
+
+- Monitoring at all levels
+  - Can be filtered at
+    - VPC
+    - Subnet
+    - Instance
+- Output written to either S3 or CloudWatch
+- No data payloads - only metadata
 
 ## Public & Private Services
 
@@ -328,7 +358,7 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 
 - Connection between Virtual Private Gateway on the VPC & Customer Gateway on the on-premise DC
   - IPSEC protocol
-  - 2 connections created by default for high availability
+  - 2 connections created in different AZs by default for high availability
   - Traffic still flows over the internet
 
 ### Direct Connect
@@ -356,6 +386,10 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 ## Cloud Shell
 
 - Linux shell
+
+## Lookout for Equipment
+
+- ML looking for anomolies in SCADA
 
 ## Lookout for Metrics
 
@@ -434,6 +468,7 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 ## WorkSpaces
 
 - VDI
+- Can integrate with Amazon Connect for WFH
 
 ## WorkDocs
 
@@ -578,6 +613,22 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 
 - Compliance report based on selected regulatory framework
 - Generates a PDF that contains an Excel spreadie with more info
+
+## AppConfig
+
+## Fault Injection Simulator (FIS)
+
+- Chaos engineering through experiments
+- Also, performance tuning
+
+## Outposts
+
+- Site visit to review/assess the location
+
+## Global Accelerator
+
+- Routes application traffic to their nearest edge location
+- From there, traffic traverses the AWS network to your deployment location(s)
 
 ## References
 
