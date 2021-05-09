@@ -169,9 +169,12 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 ### S3
 
 - [Bucket naming rules](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html)
+- Object store
+- Flat hiererchy
 - Accessed over the internet
   - Unless using a VPC Endpoint (Gateway)
 - S3 object lambda modifies the object on GET
+- Scoped to a region
 
 #### Object Lambda
 
@@ -189,6 +192,24 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 - Use case is data retention for regulatory purposes
   - Unlikely to need to retrieve it but just in case...
 
+## Storage Gateway
+
+Hybrid cloud storage
+
+Standard storage protocols
+
+File gateway
+Tape gateway
+Volume gateway
+  - iSCSI
+
+Links to
+- S3 file gateway
+- FSx file gateway
+  - File shares
+
+Data cached locally and moved to the cloud using optimised secure file Xfers
+
 ### Storage Gateway
 
 - Extension of on-prem storage into the cloud
@@ -199,6 +220,14 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 - Linux only
 - One Zone - aging data management
 - Shared file store, mountable concurrently on multiple EC2 instances
+  - Including on-prem
+- Scoped to a region
+  - Cross AZ
+
+#### FSx
+
+- SMB protocol supported
+  - Non-linux, i.e. Windows & Mac
 
 ### EBS - Elastic Block Store
 
@@ -208,8 +237,16 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
   - Throughput HDD
   - Cold HHD
 - Mount volumes - look like local drives
+  - Different volume types
+- Must be attached to an EC2 instance
+  - Single AZ scope
 - Attached over the network
   - instance stores are physically attached to the host - high performance with low latency; ephereral - lost on instance shutdown - good for temp data; otherwise, copy it off
+
+#### Instance Store
+
+- Temp storage attached to the EC2 instance
+- Wiped clean on shutdown/restart
 
 ### Snowball
 
@@ -516,10 +553,15 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 ## QuickSight
 
 - BI data visualiser
+- Fully managed service
 - Connects multiple data sources
 - No/low code
 - ML component
 - Shared via dashboards
+- In-memory compute engine
+- Standard / enterprise
+- Subscription billing model
+  - per user per month
 
 ## AWS Managed Microsoft AD
 
@@ -629,6 +671,15 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 
 - Routes application traffic to their nearest edge location
 - From there, traffic traverses the AWS network to your deployment location(s)
+
+## AWS Health
+
+- API
+  - Splunk
+  - Datadog
+  - PagerDuty
+
+## Amazon Trust Services
 
 ## References
 
