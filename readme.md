@@ -130,7 +130,10 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 - Services for deploying & scaling web apps
   - EC2, S3, SNS, CloudWatch, autoscaling, ELBs
 - Upload packaged code
+  - Right-sizing and load-balancing handled
 - Intended for developer environments
+- Auto-scaling built-ing
+- Underlying EC2 instance size selectable but instance management can be brought in-house
 
 ### Elastic Container Service (ECS)
 
@@ -150,6 +153,13 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 - Serverless functions
 - Runs for up to 15 mins
 - Paid for by time & memory consumed
+- Runs in response to an event
+
+### LightSail
+
+- Pre-configured, ready-to-go evironments
+  - Ideal for dev.
+  - Development stacks already installed
 
 ### EKS
 
@@ -163,6 +173,8 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 
 - Health probes
 - Trigger to Auto Scaling to replace a bad instance
+- Fault tolerant
+- Monitorable
 
 ## Storage Services
 
@@ -192,28 +204,39 @@ So, if you have an instance with only a private IP, i.e. it's in a private subne
 - Use case is data retention for regulatory purposes
   - Unlikely to need to retrieve it but just in case...
 
-## Storage Gateway
-
-Hybrid cloud storage
-
-Standard storage protocols
-
-File gateway
-Tape gateway
-Volume gateway
-  - iSCSI
-
-Links to
-- S3 file gateway
-- FSx file gateway
-  - File shares
-
-Data cached locally and moved to the cloud using optimised secure file Xfers
-
 ### Storage Gateway
 
 - Extension of on-prem storage into the cloud
 - Backup & archiving, DR, data processing in the cloud, stroage tiering, data migration
+- Data cached locally and moved to the cloud using optimised secure file Xfers
+
+#### File Gateway
+
+- VM runs on-prem
+- Syncs local files with S3
+  - FSx as file shares
+- Recent files cached locally
+
+#### Volume Gateway
+
+- iSCSI
+- Uploads files to EBS  in blocks
+- Point in time snapshots
+
+##### Stored Volume
+
+- Complete copy on-prem, snapshots sent to AWS
+
+##### Cached Volume
+
+- Recently accessed data cached on-prem, complete copy in AWS
+
+#### Tape Gateway
+
+- Backups to virtual tapes using existing backup infra
+- Stored locally then async upload to S3
+- Ultimate destination is S3 Glacier
+- Pay for data storage and fast retrieval
 
 ### EFS
 
@@ -266,8 +289,11 @@ Data cached locally and moved to the cloud using optimised secure file Xfers
 
 - larger version of Snowball
 - Shipping container
+- upto 100 petabytes
 
-## RDS - Relational Database Service
+## Database
+
+### RDS - Relational Database Service
 
 - Runs on EC2 instances
   - Can choose/change the instance type
@@ -286,20 +312,30 @@ Data cached locally and moved to the cloud using optimised secure file Xfers
   - snapshots restore to a new instace, not to the original source
 - Types
   - Amazon Aurora
-    - Serverless option
-    - Fully managed
-  - MySQL
   - MariaDB
   - Oracle
   - M/Soft SQL Server
   - PostgreSQL
+  - MySQL
+- Database migration service
+
+#### Aurora
+
+- Serverless option
+- Fully managed by RDS
+- Monitored through standard AWS Alerting
+- MySQL & PostgreSQL compatible but faster & cheaper
+  - Migration through DB Migration Service
+- 64TB per instance
 
 ### DynamoDB
 
 - Key/value table
+- NoSQL
 - Horiz., seamless scaling across partitions
 - Replicated across multiple AZs
 - Has its roots in Cassadra
+- Serverless as in no servers for you to manage
 
 - Tables
   - Items = rows, attributes = columns
@@ -315,10 +351,18 @@ Data cached locally and moved to the cloud using optimised secure file Xfers
 ### Redshift
 
 - Columnar DB
+- Data warehouse
+- Integrated with data lakes
 - Sharing data between instances
 - No data movement
 - Define shared objects, and consumers
 - Define consumers access to newly shared objects
+- Data sharing to single- or multi-tenant consumers
+  - Pool model - multiple tenants sharing limited resources of a single cluster, DB, and schema
+    - TenandID column needed
+    - Views shared with consumer
+  - Bridge model - shared everything except consumer specific schema
+  - Silo model - Shared cluster, dedicated DB
 
 ### ElastiCache
 
