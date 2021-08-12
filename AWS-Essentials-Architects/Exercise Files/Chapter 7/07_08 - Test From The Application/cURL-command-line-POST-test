@@ -1,0 +1,1 @@
+curl -H "Content-Type: application/json" -X POST -d "{ \"TableName\": \"things\",\"Item\": {\"thingid\": \"curltest\"}}" [REPLACE_WITH_YOUR_API_GATEWAY_POST_INVOKE_URL]
